@@ -121,7 +121,7 @@ object text {
       })
     val df: DataFrame = sQContext.createDataFrame(rowRDD,SchemaUtils.structtype)
 //    df.write.parquet(outputPath)
-    val frame: DataFrame = df.groupBy("provincename","cityname").count()
+//    val frame: DataFrame = df.groupBy("provincename","cityname").count()
 //    val connectionProperties = new Properties()
 //    connectionProperties.put("user","root")
 //    connectionProperties.put("password","123456")
@@ -131,10 +131,7 @@ object text {
 //    frame.write.partitionBy("provincename","cityname").mode(SaveMode.Append).json("hdfs://192.168.126.60:9000/tmp")
     //保存在本地磁盘上
 //    frame.write.json(outputPath)
-    frame.coalesce(1).write.parquet(outputPath)
-
-
-
+    df.coalesce(1).write.parquet(outputPath)
     sc.stop()
   }
 }
